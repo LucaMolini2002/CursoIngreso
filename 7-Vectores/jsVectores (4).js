@@ -1,7 +1,7 @@
 function mostrar()
 {
 
-	var miArray = new Array();
+	var miArray =[]
 	var acum=0;
 	for (var i = 0; i <5; i++)
 	{
@@ -13,7 +13,7 @@ function mostrar()
 	for(var i=0; i<5; i++)
 	{
 
-		document.write("Posicion "+i+"-->"+miArray[i]+"<br>");
+		document.write("Numero "+i+"-->"+miArray[i]+"<br>");
 
 
 	}

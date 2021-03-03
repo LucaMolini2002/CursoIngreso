@@ -1,11 +1,11 @@
 function mostrar()
 {
 
-	var miArray;
+	var miArray = [];
 
 	for (var i = 0; i <5; i++)
 	{
-		miArray=parseInt(prompt("Ingrese un numero"));
+		miArray[i]=parseInt(prompt("Ingrese un numero"));
 	}
 
 	for(var i=0; i<5; i++)
