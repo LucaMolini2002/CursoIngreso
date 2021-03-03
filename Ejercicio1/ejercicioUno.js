@@ -16,7 +16,8 @@ function probarEjercicio(){
 	var porcentajeMascotasEnfermas=0;
 	var totalMascotas=0;
 	var nombreUltimaMascota="ninguno";
-	var temperaturaMinima=Number.MAX_SAFE_INTEGER;
+	var temperaturaMinima;
+	var flag=0;
 	var animalSinPeloTempMinima;
 	var totalPerrosyGatos=0;
 	var porcentajePerrosyGatos=0;
@@ -29,7 +30,8 @@ function probarEjercicio(){
 	var cantAdopcion=0;
 	var estClinicoMenosMascotas;
 	var acumuladorPeso=0;
-	var gatoMasLiviano=Number.MAX_SAFE_INTEGER;
+	var gatoMasLiviano;
+	var flagTemp=0;
 	var nombreGatoLiviano="ninguno";
 	var razaGatoLiviano="ninguna";
 
@@ -98,18 +100,20 @@ function probarEjercicio(){
 		if(estadoClinico=="enfermo"){
 			mascotasEnfermas++;
 		}
-		if(tipoPelaje=="sin pelo"&&temperaturaCorporal<temperaturaMinima){
+		if(flagTemp=0||tipoPelaje=="sin pelo"&&temperaturaCorporal<temperaturaMinima){
 			temperaturaMinima=temperaturaCorporal;
 			animalSinPeloTempMinima=mascota;
+			flagTemp=1
 			
 		}
 		if(mascota=="gato"||mascota=="perro"){
 			totalPerrosyGatos++;
 		}
-		if(tipoPelaje=="sin pelo"&&mascota=="gato"&&pesoMascota<gatoMasLiviano){
+		if(flag=0||tipoPelaje=="sin pelo"&&mascota=="gato"&&pesoMascota<gatoMasLiviano){
 			gatoMasLiviano=pesoMascota;
 			nombreGatoLiviano=nombreMascota;
 			razaGatoLiviano=razaMascota;
+			flag=1
 		}
 
 		respuesta=confirm("Quiere introducir otra mascota?");
