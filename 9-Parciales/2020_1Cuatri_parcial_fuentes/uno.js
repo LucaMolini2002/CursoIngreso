@@ -22,15 +22,15 @@ function mostrar()
 
 	for(var i=0;i<3;i++){
 		tipoProducto=prompt('Ingrese su producto: ("barbijo" , "jabobarbijon" o "alcohol")');
-		while(tipoProducto!="barbijo"&&tipoProducto!="jabon"&&tipoProducto!="alcohol"){
+		while(!isNaN(tipoProducto)||tipoProducto!="barbijo"&&tipoProducto!="jabon"&&tipoProducto!="alcohol"){
 			tipoProducto=prompt('Error, Ingrese producto nuevo: "barbijo", "jabon" o "alcohol":');
 		}
 		precioProducto=parseInt(prompt("Ingresar precio del producto: (entre 100 y 300)"));
-		while(precioProducto<100||precioProducto>300){
+		while(isNaN(precioProducto)||precioProducto<100||precioProducto>300){
 			precioProducto=parseInt(prompt("Error, Ingresar precio nuevo entre 100 y 300"));
 		}
 		cantidadUnidadesProducto=parseInt(prompt("Ingrese cantidad(maximo 1000)"));
-		while(cantidadUnidadesProducto>=1000||cantidadUnidadesProducto<1){
+		while(isNaN(cantidadUnidadesProducto)||cantidadUnidadesProducto>=1000||cantidadUnidadesProducto<1){
 			cantidadUnidadesProducto=parseInt(prompt("Error, Ingrese cantidad nueva: (maximo 1000)"));
 		}
 		marcaProducto=prompt("Ingrese marca del producto: ");
@@ -40,11 +40,18 @@ function mostrar()
 			case "alcohol":
 				acumuladorAlcohol+=cantidadUnidadesProducto;
 				contadorAlcohol++;
-				if(flag=0||precioProducto<baratoAlcohol){
+				if(flag=0){
 					baratoAlcohol=precioProducto;
 					unidadesAlcohol=cantidadUnidadesProducto;
 					fabricanteAlcohol=fabricanteProducto;
 					flag=1
+				}
+				else{
+					if(precioProducto<baratoAlcohol){
+						baratoAlcohol=precioProducto;
+						unidadesAlcohol=cantidadUnidadesProducto;
+						fabricanteAlcohol=fabricanteProducto;
+					}
 				}
 			case "Barbijo":
 				acumuladorBarbijo+=cantidadUnidadesProducto;
@@ -58,14 +65,14 @@ function mostrar()
 	if(acumuladoralcohol>acumuladorBarbijo&&acumuladorAlcohol>acumuladorJabon){
 		tipoMasUnidades="alcohol";
 		promedioCommpra=acumuladorAlcohol/contadorAlcohol;
-	}else if(acumuladorBarbijo>acumuladorAlcohol&&acumuladorBarbijo>acumuladorJabon){
-		tipoMasUnidades="barbijo";
-		promedioCommpra=acumuladorBarbijo/contadorBarbijo;
-	}else if(acumuladorJabon>acumuladorAlcohol&&acumuladorJabon>acumuladorBarbijo){
-		tipoMasUnidades="jabon";
-		promedioCommpra=acumuladorJabon/contadorJabon;
 	}else{
-		tipoMasUnidades="Todos";
+		if(acumuladorBarbijo>acumuladorAlcohol&&acumuladorBarbijo>acumuladorJabon){
+			tipoMasUnidades="barbijo";
+			promedioCommpra=acumuladorBarbijo/contadorBarbijo;
+		}else{
+			tipoMasUnidades="jabon";
+			promedioCommpra=acumuladorJabon/contadorJabon;
+		}
 	}
 	UnidadesJabonTotal=acumuladorJabon;
 
